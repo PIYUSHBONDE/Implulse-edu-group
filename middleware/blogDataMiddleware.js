@@ -4,6 +4,7 @@ require('dotenv').config();
 let cachedBlogData = null; // Global variable to cache the blog data
 let cacheTimestamp = null; // Timestamp when the cache was last updated
 
+const CACHE_DURATION = 15 * 60 * 1000;
 const fetchBlogData = async (req, res, next) => {
   try {
     // Check if the blog data is already cached and not expired
