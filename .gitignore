@@ -1,2 +1,17 @@
-node_modules
-./.env
+# Ignore node_modules directory
+node_modules/
+
+# Ignore .env file (contains sensitive information)
+.env
+
+# Ignore logs and other runtime files
+logs/
+*.log
+npm-debug.log*
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore .vscode settings (if you use Visual Studio Code)
+.vscode/
