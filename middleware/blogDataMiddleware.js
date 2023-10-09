@@ -1,8 +1,8 @@
 const axios = require('axios');
+require('dotenv').config();
 
 let cachedBlogData = null; // Global variable to cache the blog data
 let cacheTimestamp = null; // Timestamp when the cache was last updated
-const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes in milliseconds
 
 const fetchBlogData = async (req, res, next) => {
   try {
@@ -10,9 +10,9 @@ const fetchBlogData = async (req, res, next) => {
     if (cachedBlogData && cacheTimestamp && Date.now() - cacheTimestamp <= CACHE_DURATION) {
       req.blogData = cachedBlogData;
     } else {
-      const response = await axios.get('https://intent-kit-16.hasura.app/api/rest/blogs', {
+      const response = await axios.get(process.env.API_URL, {
         headers: {
-          'x-hasura-admin-secret': '32qR4KmXOIpsGPQKMqEJHGJS27G5s7HdSKO3gdtQd2kv5e852SiYwWNfxkZOBuQ6',
+          'x-hasura-admin-secret': process.env.ADMIN_SECRET,
         },
       });
 

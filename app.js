@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 const blogStatsRoutes = require('./routes/blogStatsRoutes');
@@ -6,7 +7,7 @@ const blogSearchRoutes = require('./routes/blogSearchRoutes');
 const _ = require('lodash');
 
 // Clear the memoization cache every CACHE_DURATION milliseconds
-const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes in milliseconds
+const CACHE_DURATION = process.env.CACHE_DURATION || 900000; // Default: 15 minutes
 setInterval(() => {
   _.memoize.Cache = new WeakMap();
 }, CACHE_DURATION);
